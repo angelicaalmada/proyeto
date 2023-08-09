@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Menu Principal";
+}
+<link rel="stylesheet" href='~/css/footer.css' />
+
+<section>
+    <div class="container p-5">
+
+        <div class="card mx-3 mt-n5 shadow-lg px-5 text-center" style="border-radius:0px; border:none;">
+            <div class="row">
+                <div class="col py-3">
+                    <h2>Bienvenidos</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Producto Academico</h2>
+                    <a href="@Url.Action("ProductoAcademico", "Home")"><img src='~/img/producto.jpg' class="img-fluid producto" alt="Producto Academico" id="producto"></a>
+                </div>
+
+                <div class="col-md-6">
+                    <h2>Historial Academico</h2>
+                    <a href="@Url.Action("HistorialAcademico", "Home")" alt="Productos"><img src='~/img/historial.jpg' class="img-fluid producto" alt="Historial Academico"></a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

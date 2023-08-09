@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Registro";
+}
+<link rel="stylesheet" href='~/css/footer.css' />
+
+<section>
+    <div class="container p-5">
+
+        <div class="card mx-3 mt-n5 shadow-lg px-5 text-center" style="border-radius:0px; border:none">
+            <div class="row">
+                <div class="col py-3">
+                    <h2>Iniciar Sesión</h2>
+                    <label>
+                        <img src="/img/th (1).jpg" id="fotoPerfil">
+                    </label>
+
+                </div>
+
+            </div>
+            <form action="/home/index" method="post" class="formlogin">
+            <div class="row">
+
+                <div class="col-12 py-3">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario" id="nombreUsuario">
+                </div>
+                <div class="col-12 py-3">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" id="contrasena">
+
+                </div>
+                <div class="col-12 py-3">
+                    <a href="recuperarcontrasena.html">¿olvidaste tu contraseña?</a>
+                </div>
+
+                <div class="col-12 py-3">
+                    <label>
+                        Recordar<input type="checkbox" id="recuerdame" name="recuerdame" value="1">
+                    </label>
+                </div>
+
+            </div>
+                @if (ViewData["msj"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["msj"]
+                    </div>
+                }
+            <div class="row">
+                <div class="col-12 py-3">
+                    <button type="submit"  class="btn btn-success btn-lg">
+                        Inicia sesión
+                    </button>
+
+
+                </div>
+
+                <div class="col-12 py-3">
+                    <button type="button" onclick="location.href='@Url.Action("Create", "Registro")';" class="btn btn-primary btn-lg">
+                        Crear cuenta
+                        
+                    </button>
+
+                </div>
+
+
+            </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+

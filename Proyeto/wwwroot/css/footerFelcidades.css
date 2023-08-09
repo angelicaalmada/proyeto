@@ -1,0 +1,24 @@
+﻿footer {
+    background-color: rgb(233, 233, 233);
+    text-align: center;
+   /* position: fixed;*/
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0; /* Agregar un espacio interno al footer para que se vea mejor */
+}
+
+#datosEscuela {
+    display: inline;
+}
+
+#redes {
+    display: flex;
+    justify-content: center;
+}
+
+#feisbuk,
+#pagina,
+#twitter,
+#insta {
+    padding: 0.5em;
+}

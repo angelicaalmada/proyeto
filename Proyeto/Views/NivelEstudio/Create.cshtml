@@ -1,0 +1,33 @@
+﻿@model Proyeto.Models.NivelEstudioModel
+
+@{
+    ViewData["Title"] = "Nuevo Nivel Estudios";
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+<h1>Nuevo Nivel Estudio</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="NombreNivel" class="control-label"></label>
+                <input asp-for="NombreNivel" class="form-control" />
+                <span asp-validation-for="NombreNivel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <a asp-action="Index">Regresar</a>
+</div>
+

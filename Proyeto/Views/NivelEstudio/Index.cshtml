@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proyeto.Models.NivelEstudioModel>
+
+@{
+    ViewData["Title"] = "Nivel Estudios";
+}
+
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+<h1>Nivel Estudio</h1>
+<div class="row">
+
+<p>
+    <a asp-action="Create">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NivelEstudiosId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreNivel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelEstudiosId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreNivel)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.NivelEstudiosId }) |
+                        @Html.ActionLink("Ver", "Details", new { id=item.NivelEstudiosId }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id=item.NivelEstudiosId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

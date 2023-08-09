@@ -1,0 +1,41 @@
+﻿@model Proyeto.Models.AutorModel
+
+@{
+    ViewData["Title"] = "Datos Personales";
+}
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+<h1>Datos Personales</h1>
+<div class="row">
+  @*  @foreach (var item in Model)
+    {*@
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => Model.Nombre)</h5>
+                    <p class="card-text">
+                    <strong>Apellido Paterno: </strong>@Html.DisplayFor(modelItem => Model.ApePaterno)<br />
+                    <strong>Apellido Materno:</strong> @Html.DisplayFor(modelItem => Model.ApeMaterno)<br />
+                    <strong>Matricula:</strong> @Html.DisplayFor(modelItem => Model.Matricula)<br />
+                    <strong>Numero de Empleado:</strong> @Html.DisplayFor(modelItem => Model.NumEmpleado)<br />
+                    <strong>Tipo de Cuenta:</strong> @Html.DisplayFor(modelItem => Model.TipoCuenta)<br />
+                    <strong>Telefono:</strong> @Html.DisplayFor(modelItem => Model.NumTelefono)<br />
+                    <strong>Fecha Nac:</strong> @Html.DisplayFor(modelItem => Model.FechaNaci)<br />
+                    <strong>Cuerpo Academico:</strong> @Html.DisplayFor(modelItem => Model.CuerpoAcademico)<br />
+                    <strong>Area Estudios:</strong> @Html.DisplayFor(modelItem => Model.AreaEstudios)<br />
+                    <strong>Nivel Estudios:</strong> @Html.DisplayFor(modelItem => Model.NivelEstudios1.NombreNivel)
+                    </p>
+                    <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.IdAutor" class="btn btn-info">Editar</a>
+                    @*@<a asp-action="Delete" asp-route-id="@Model.IdAutor" class="btn btn-danger">Eliminar</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+   @* }*@
+</div>
+
+

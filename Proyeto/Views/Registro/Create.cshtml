@@ -1,0 +1,147 @@
+﻿@model Proyeto.Models.UsuarioModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />*@
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+
+@*<div class="card mx-3 mt-n5 shadow-lg px-5 text-center" style="border-radius:0px; border:none">*@
+    
+<div class="row">
+
+    <div class="row">
+        <div class="col py-3">
+            <h2>Registrar usuario</h2>
+
+
+        </div>
+
+    </div>
+
+    <form action="/Registro/create" method="post" id="formRegistro" class="needs-validation" novalidate>
+
+        <fieldset>
+            <legend>
+                Cuenta
+            </legend>
+
+            <div class="row">
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" id="NombreUsuario" name="NombreUsuario" required>
+
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="password" class="form-control" placeholder="Contraseña" id="Contrasena" name="Contrasena" required>
+
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="password" class="form-control" placeholder="Confirme Contraseña" id="confcontrasena" name="confcontrasena" required>
+
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <select placeholder="tipoCuenta" class="form-control" id="TipoCuenta" name="TipoCuenta" required>
+                        <option value="" disabled selected>
+                            Tipo de cuenta
+                        </option>
+                        <option value="docente">
+                            Docente
+                        </option>
+                        <option value="alumno">
+                            Alumno
+                        </option>
+                    </select>
+                </div>
+
+
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Datos personales
+            </legend>
+            <div class="row">
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="text" class="form-control" placeholder="Nombre (s)" id="Nombre" name="Nombre" required>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="text" class="form-control" placeholder="Apellido paterno" id="ApePaterno" name="ApePaterno" required>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="text" class="form-control" placeholder="Apellido materno" id="ApeMaterno" name="ApeMaterno" required>
+                </div>
+
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input id="datepicker" width="276" placeholder="Fecha de Nacimiento" name="FechaNaci" required />
+                  
+                </div>
+
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <select id="IdNivelEstudios1" name="IdNivelEstudios1" class="form-control" required>
+                        <option value="" disabled selected>
+                            Nivel de Estudios
+                        </option>
+
+                        <option value="1">
+                            Tecnico
+
+                        </option>
+                        <option value="2">
+                            Licenciatura
+
+                        </option>
+                        <option value="3">
+                            Ingenieria
+
+                        </option>
+                        <option value="4">
+                            Maestria
+
+                        </option>
+                        <option value="5">
+                            Doctorado
+
+                        </option>
+                    </select>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="text" class="form-control" placeholder="Area de estudios" id="AreaEstudios"
+                           name="AreaEstudios" required>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="email" class="form-control" placeholder="Correo electronico" id="Correo"
+                           name="Correo" required>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+                    <input type="tel" class="form-control" placeholder="Numero de teléfono"
+                           id="NumTelefono" name="NumTelefono">
+                    <div class="invalid-feedback"></div>
+
+                </div>
+                <div class="col-12 py-3">
+                    <button id="btnCrear" type="submit" style="min-width: 7em;" class="btn btn-primary btn-lg">
+                        Crear
+                    </button>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </fieldset>
+
+    </form>
+
+
+</div>
+
+
+

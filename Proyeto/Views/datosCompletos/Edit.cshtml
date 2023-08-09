@@ -1,0 +1,85 @@
+﻿@model Proyeto.Models.AutorModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href='~/css/footer.css' />
+
+<h1>Editar</h1>
+
+<h4>Autor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdAutor" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApePaterno" class="control-label"></label>
+                <input asp-for="ApePaterno" class="form-control" />
+                <span asp-validation-for="ApePaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApeMaterno" class="control-label"></label>
+                <input asp-for="ApeMaterno" class="form-control" />
+                <span asp-validation-for="ApeMaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumEmpleado" class="control-label"></label>
+                <input asp-for="NumEmpleado" class="form-control" />
+                <span asp-validation-for="NumEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoCuenta" class="control-label"></label>
+                <input asp-for="TipoCuenta" class="form-control" />
+                <span asp-validation-for="TipoCuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumTelefono" class="control-label"></label>
+                <input asp-for="NumTelefono" class="form-control" />
+                <span asp-validation-for="NumTelefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNaci" class="control-label"></label>
+                <input asp-for="FechaNaci" class="form-control" />
+                <span asp-validation-for="FechaNaci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuerpoAcademico" class="control-label"></label>
+                <input asp-for="CuerpoAcademico" class="form-control" />
+                <span asp-validation-for="CuerpoAcademico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaEstudios" class="control-label"></label>
+                <input asp-for="AreaEstudios" class="form-control" />
+                <span asp-validation-for="AreaEstudios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdNivelEstudios1" class="control-label"></label>
+                <select asp-for="IdNivelEstudios1" class="form-control" asp-items="ViewBag.IdNivelEstudios1"></select>
+                <span asp-validation-for="IdNivelEstudios1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

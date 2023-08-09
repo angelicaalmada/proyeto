@@ -1,0 +1,7 @@
+.articulos img {
+    /* border: 2px solid black; */
+    width: 120px;
+    height: 150px;
+    float: left;
+    margin: 0.5em;
+}

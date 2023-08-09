@@ -1,0 +1,19 @@
+footer {
+    
+    background-color: rgb(233, 233, 233);
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+#datosEscuela{
+    display: inline;
+}
+  
+#redes{
+    display: flex;
+    justify-content: center;
+}
+#feisbuk, #pagina, #twitter, #insta {
+    padding: 0.5em;
+}
