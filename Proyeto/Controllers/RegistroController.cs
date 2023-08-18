@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Proyeto.Controllers
     {
        UsuarioDatos _usuarioDatos = new UsuarioDatos();
         AutorDatos _autorDatos = new AutorDatos();
+        NivelEstudioDatos _nivelesDatos = new NivelEstudioDatos();
+        TipoCuentaDatos _datoscuenta = new TipoCuentaDatos();
 
         public RegistroController()
         {
@@ -48,8 +51,11 @@ namespace Proyeto.Controllers
         // GET: Registro/Create
         public IActionResult Create()
         {
-            var listAutores = _autorDatos.Listar();
-            ViewData["IdAutor1"] = new SelectList(listAutores, "IdAutor", "IdAutor");
+            var listatipos = _datoscuenta.Listar();
+            ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");
+          
+            var lista = _nivelesDatos.Listar();
+            ViewData["IdNivelEstudios1"] = new SelectList(lista, "NivelEstudiosId", "NombreNivel");           
             return View();
         }
 
@@ -58,7 +64,7 @@ namespace Proyeto.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NombreUsuario,Correo,Contrasena")] UsuarioModel usuario, [Bind("TipoCuenta, Nombre, ApePaterno, ApeMaterno, FechaNaci, IdNivelEstudios1, AreaEstudios, NumTelefono")] AutorModel autor, string confcontrasena)
+        public async Task<IActionResult> Create([Bind("NombreUsuario,Correo,Contrasena")] UsuarioModel usuario, [Bind("IdTipoCuenta, Nombre, ApePaterno, ApeMaterno, FechaNaci, IdNivelEstudios1, AreaEstudios, NumTelefono")] AutorModel autor, string confcontrasena)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +75,11 @@ namespace Proyeto.Controllers
               
                 return RedirectToAction(nameof(Index));
             }
+            var listatipos = _datoscuenta.Listar();
+            ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");
             //ViewData["IdAutor1"] = new SelectList(_context.Autors, "IdAutor", "IdAutor", usuario.IdAutor1);
+            var lista = _nivelesDatos.Listar();
+            ViewData["IdNivelEstudios1"] = new SelectList(lista, "NivelEstudiosId", "NombreNivel");
             return View(usuario);
         }
 

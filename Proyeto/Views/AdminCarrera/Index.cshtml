@@ -1,0 +1,29 @@
+﻿@model List<CarreraAdminModel>;
+@{
+    ViewData["Title"] = "Carreras";
+}
+<div class="card-body">
+    <a asp-action="Crear" asp-controller="AdminCarrera" class="btn btn-primary btn-sm">Crear nueva carrera</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.Nombre)
+                    </td>                
+                    <td>
+                        <a asp-action="Editar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Eliminar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                 </tr>
+            }
+        </tbody>
+    </table>
+</div>

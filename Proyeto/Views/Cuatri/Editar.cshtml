@@ -1,0 +1,55 @@
+﻿@model Proyeto.Models.CuatriModel
+
+
+@{
+    ViewData["Title"] = "Editar Cuatri";
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+<h4>Editar Cuatri</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdCuatrimestre" class="control-label"></label>
+                <input asp-for="IdCuatrimestre" class="form-control" />
+                <span asp-validation-for="IdCuatrimestre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCuatri" class="control-label"></label>
+                <input asp-for="NombreCuatri" class="form-control" />
+                <span asp-validation-for="NombreCuatri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrlDocumento" class="control-label"></label>
+                <input readonly asp-for="UrlDocumento" class="form-control" />
+                <span asp-validation-for="UrlDocumento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nuevo Documento</label>              
+                <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
+
+            </div>
+         
+               
+                <input type="hidden" asp-for="IdAutor1" class="form-control" />
+               
+          
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+
+

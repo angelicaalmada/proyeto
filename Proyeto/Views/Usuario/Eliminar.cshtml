@@ -1,0 +1,102 @@
+﻿@model Proyeto.Models.UsuarioModel
+
+
+@{
+    ViewData["Title"] = "Eliminar usuario";
+   
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+
+<h3>¿Estas seguro que deseas eliminar Cuatrimestre?</h3>
+<div>
+    <h4>Eliminar Usuario</h4>
+    <hr />
+    <dl class="row">
+        @Html.HiddenFor(model => model.Autor.IdAutor)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Correo)
+        </dd>      
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.ApePaterno)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.ApePaterno)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.ApeMaterno)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.ApeMaterno)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.Matricula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.Matricula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.NumEmpleado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.NumEmpleado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.TipoCuenta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.TipoCuenta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.NumTelefono)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.NumTelefono)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.FechaNaci)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.FechaNaci)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.CuerpoAcademico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.CuerpoAcademico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor.AreaEstudios)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor.AreaEstudios)
+        </dd>
+       
+            @Html.HiddenFor(model => model.Autor.IdNivelEstudios1)
+   
+    </dl>
+    
+    <form asp-action="Eliminar">
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar a la lista</a>
+    </form>
+</div>

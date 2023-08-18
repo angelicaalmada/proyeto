@@ -1,0 +1,24 @@
+﻿@model CarreraAdminModel;
+@{
+    ViewData["Title"] = "Nueva Carrera";
+}
+<div class="card col-8">
+    <div class="card-header">
+        Eliminar materia
+    </div>
+    <div class="card-body justify-content-center">
+        <form asp-action="Eliminar" asp-controller="AdminCarrera" method="post">
+            <input asp-for="IdCaAdmin" type="hidden" class="form-control" />
+            <div class="alert alert-danger" role="alert">
+                ¿Desea eliminar la materia: @Html.DisplayFor(m=>m.Nombre)?
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-danger mnb-3 btn-sm">Eliminar</button>
+                <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
+
+            </div>
+        </form>
+    </div>
+
+</div>

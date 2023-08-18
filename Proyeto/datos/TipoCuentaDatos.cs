@@ -4,27 +4,27 @@ using Proyeto.Models;
 
 namespace Proyeto.datos
 {
-    public class CategoriaDatos
+    public class TipoCuentaDatos
     {
-        public List<CategoriaModel> Listar()
+        public List<TipoCuentaModel> Listar()
         {
-            List<CategoriaModel> Lista = new List<CategoriaModel>();
+            List<TipoCuentaModel> Lista = new List<TipoCuentaModel>();
             var cn = new Conexion();
             using (var conexion = new SqlConnection(cn.getCadenaSql()))
             {
                 conexion.Open();
-                SqlCommand cmd = new SqlCommand("sp_CategoriaListar", conexion);
+                SqlCommand cmd = new SqlCommand("sp_TipoCuentaListar", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        Lista.Add(new CategoriaModel
+                        Lista.Add(new TipoCuentaModel
                         {
-                            IdCategoria = Convert.ToInt32(dr["IdCategoria"]),
+                            IdTipo = Convert.ToInt32(dr["IdTipoCuenta"]),
                             Descripcion = dr["Descripcion"].ToString(),
-                            Tipo = dr["Tipo"].ToString(),
+                            //Tipo = dr["Tipo"].ToString(),
                         });
                     }
                 }
@@ -35,15 +35,15 @@ namespace Proyeto.datos
 
 
 
-        public CategoriaModel Obtener(int IdCategoria)
+        public TipoCuentaModel Obtener(int IdTipo)
         {
-            CategoriaModel _categoria = new CategoriaModel();
+            TipoCuentaModel _categoria = new TipoCuentaModel();
             var cn = new Conexion();
             using (var conexion = new SqlConnection(cn.getCadenaSql()))
             {
                 conexion.Open();
-                SqlCommand cmd = new SqlCommand("sp_CategoriaObtener", conexion);
-                cmd.Parameters.AddWithValue("IdCategoria", IdCategoria);
+                SqlCommand cmd = new SqlCommand("sp_TipoCuentaObtener", conexion);
+                cmd.Parameters.AddWithValue("IdTipoCuenta", IdTipo);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -51,9 +51,8 @@ namespace Proyeto.datos
                     while (dr.Read())
                     {
 
-                        _categoria.IdCategoria = Convert.ToInt32(dr["IdCategoria"]);
+                        _categoria.IdTipo = Convert.ToInt32(dr["IdTipoCuenta"]);
                         _categoria.Descripcion = dr["Descripcion"].ToString();
-                        _categoria.Tipo = dr["Tipo"].ToString();
                     }
                 }
             }
@@ -62,7 +61,7 @@ namespace Proyeto.datos
 
 
 
-        public bool Guardar(CategoriaModel model)//Procedimiento almacenado Guardar
+        public bool Guardar(TipoCuentaModel model)//Procedimiento almacenado Guardar
         {
             bool respuesta;
             try
@@ -71,9 +70,8 @@ namespace Proyeto.datos
                 using (var conexion = new SqlConnection(cn.getCadenaSql()))
                 {
                     conexion.Open();
-                    SqlCommand cmd = new SqlCommand("sp_CategoriaGuardar", conexion);
-                    cmd.Parameters.AddWithValue("Descripcion", model.Descripcion);
-                    cmd.Parameters.AddWithValue("Tipo", model.Tipo);
+                    SqlCommand cmd = new SqlCommand("sp_TipoCuentaGuardar", conexion);
+                    cmd.Parameters.AddWithValue("Descripcion", model.Descripcion);                   
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
 
@@ -90,7 +88,7 @@ namespace Proyeto.datos
         }
 
 
-        public bool Editar(CategoriaModel model) //Procedimiento almacenado Editar
+        public bool Editar(TipoCuentaModel model) //Procedimiento almacenado Editar
         {
             bool respuesta;
             try
@@ -99,10 +97,9 @@ namespace Proyeto.datos
                 using (var conexion = new SqlConnection(cn.getCadenaSql()))
                 {
                     conexion.Open();
-                    SqlCommand cmd = new SqlCommand("sp_CategoriaEditar", conexion);
-                    cmd.Parameters.AddWithValue("IdCategoria", model.IdCategoria);
+                    SqlCommand cmd = new SqlCommand("sp_TipoCuentaEditar", conexion);
+                    cmd.Parameters.AddWithValue("IdTipoCuenta", model.IdTipo);
                     cmd.Parameters.AddWithValue("Descripcion", model.Descripcion);
-                    cmd.Parameters.AddWithValue("Tipo", model.Tipo);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }
@@ -118,7 +115,7 @@ namespace Proyeto.datos
 
 
 
-        public bool Eliminar(int IdCategoria)//Procedimiento almacenado Eliminar
+        public bool Eliminar(int IdTipo)//Procedimiento almacenado Eliminar
         {
             bool respuesta;
             try
@@ -127,8 +124,8 @@ namespace Proyeto.datos
                 using (var conexion = new SqlConnection(cn.getCadenaSql()))
                 {
                     conexion.Open();
-                    SqlCommand cmd = new SqlCommand("sp_CategoriaEliminar", conexion);
-                    cmd.Parameters.AddWithValue("IdCategoria", IdCategoria);
+                    SqlCommand cmd = new SqlCommand("sp_TipoCuentaEliminar", conexion);
+                    cmd.Parameters.AddWithValue("IdTipoCuenta", IdTipo);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }

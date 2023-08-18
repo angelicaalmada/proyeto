@@ -1,7 +1,8 @@
-﻿@model Proyeto.Models.CategoriaModel
+﻿@model Proyeto.Models.TipoCuentaModel
 
 @{
     ViewData["Title"] = "Categoria";
+   
 }
 
 <link rel="stylesheet" href='~/css/StyleSheet1.css' />
@@ -11,14 +12,14 @@
 
 
 <div class="row">
-    <h4>CategoriaModel</h4>
+    <h4>Categoria</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCategoria)
+            @Html.DisplayNameFor(model => model.IdTipo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCategoria)
+            @Html.DisplayFor(model => model.IdTipo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -26,16 +27,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tipo)
-        </dd>
+       
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Editar", "Edit", new {  id = Model.IdTipo  }) |
     <a asp-action="Index">Regresar</a>
 </div>
 

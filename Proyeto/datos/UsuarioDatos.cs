@@ -60,6 +60,33 @@ namespace Proyeto.datos
         }
 
 
+        public UsuarioModel ObtenerByAutor(int idAutor)
+        {
+            UsuarioModel _usuario = new UsuarioModel();
+            var cn = new Conexion();
+            using (var conexion = new SqlConnection(cn.getCadenaSql()))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("sp_UsuarioObtenerByAutor", conexion);
+                cmd.Parameters.AddWithValue("IdAutor", idAutor);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+
+                        _usuario.NombreUsuario = dr["NombreUsuario"].ToString();
+                        _usuario.Correo = dr["Correo"].ToString();
+                        _usuario.Contrasena = dr["Contrasena"].ToString();
+                        _usuario.IdAutor1 = Convert.ToInt32(dr["IdAutor1"]);
+                    }
+                }
+            }
+            return _usuario;
+        }
+
+
 
         public UsuarioModel Login(string NombreUsuario, string Contrasena)
         {
@@ -82,6 +109,7 @@ namespace Proyeto.datos
                         _usuario.Correo = dr["Correo"].ToString();
                         _usuario.Contrasena = dr["Contrasena"].ToString();
                         _usuario.IdAutor1 = Convert.ToInt32(dr["IdAutor1"]);
+                        _usuario.EsAdmin = dr["EsAdmin"]!=DBNull.Value? Convert.ToInt32(dr["EsAdmin"]) : 0  ;
                     }
                 }
             }
@@ -92,27 +120,34 @@ namespace Proyeto.datos
         public bool GuardarUsuario(UsuarioModel model)//Procedimiento almacenado Guardar
         {
             bool respuesta;
-            try
+            if (true)
             {
-                var cn = new Conexion();
-                using (var conexion = new SqlConnection(cn.getCadenaSql()))
+                try
                 {
-                    conexion.Open();
-                    SqlCommand cmd = new SqlCommand("sp_UsuarioGuardar", conexion);
-                    cmd.Parameters.AddWithValue("NombreUsuario", model.NombreUsuario);
-                    cmd.Parameters.AddWithValue("Correo", model.Correo);
-                    cmd.Parameters.AddWithValue("Contrasena", model.Contrasena);
-                    cmd.Parameters.AddWithValue("IdAutor", model.IdAutor1);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.ExecuteNonQuery();
+                    var cn = new Conexion();
+                    using (var conexion = new SqlConnection(cn.getCadenaSql()))
+                    {
+                        conexion.Open();
+                        SqlCommand cmd = new SqlCommand("sp_UsuarioGuardar", conexion);
+                        cmd.Parameters.AddWithValue("NombreUsuario", model.NombreUsuario);
+                        cmd.Parameters.AddWithValue("Correo", model.Correo);
+                        cmd.Parameters.AddWithValue("Contrasena", model.Contrasena);
+                        cmd.Parameters.AddWithValue("IdAutor", model.IdAutor1);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
 
+                    }
+                    respuesta = true;
                 }
-                respuesta = true;
-            }
 
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    string error = ex.Message;
+                    respuesta = false;
+                }
+            }
+            else
             {
-                string error = ex.Message;
                 respuesta = false;
             }
             return respuesta;
@@ -173,6 +208,37 @@ namespace Proyeto.datos
         }
 
 
+        public bool ExisteUsuario(string nombreUsuario)
+        {
+            string eNombreUsuario = "";
+            var cn = new Conexion();
+            using (var conexion = new SqlConnection(cn.getCadenaSql()))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("sp_ValidarNombreUsuario", conexion);
+                cmd.Parameters.AddWithValue("NombreUsuario", nombreUsuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+
+                        eNombreUsuario = dr["NombreUsuario"].ToString();
+                      
+                    }
+                }
+            }
+
+            if (eNombreUsuario != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
 
 

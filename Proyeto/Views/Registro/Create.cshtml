@@ -43,17 +43,8 @@
 
                 </div>
                 <div class="col-xl-4 col-md-6 col-sm-12 py-3">
-                    <select placeholder="tipoCuenta" class="form-control" id="TipoCuenta" name="TipoCuenta" required>
-                        <option value="" disabled selected>
-                            Tipo de cuenta
-                        </option>
-                        <option value="docente">
-                            Docente
-                        </option>
-                        <option value="alumno">
-                            Alumno
-                        </option>
-                    </select>
+                    @Html.DropDownList("IdTipoCuenta", (IEnumerable<SelectListItem>)ViewData["IdTipoCuenta"], new { @class = "form-control"})
+                   
                 </div>
 
 
@@ -82,6 +73,9 @@
                 </div>
 
                 <div class="col-xl-4 col-md-6 col-sm-12 py-3">
+
+                    @Html.DropDownList("IdNivelEstudios1", (IEnumerable<SelectListItem>)ViewData["IdNivelEstudios1"], new { @class = "form-control"})
+@*
                     <select id="IdNivelEstudios1" name="IdNivelEstudios1" class="form-control" required>
                         <option value="" disabled selected>
                             Nivel de Estudios
@@ -107,7 +101,7 @@
                             Doctorado
 
                         </option>
-                    </select>
+                    </select>*@
                 </div>
                 <div class="col-xl-4 col-md-6 col-sm-12 py-3">
                     <input type="text" class="form-control" placeholder="Area de estudios" id="AreaEstudios"
@@ -137,6 +131,7 @@
 
 
         </fieldset>
+        @Html.ValidationSummary(false, "Please fix the following error and then submit the form")
 
     </form>
 

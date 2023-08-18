@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Proyeto.Models.EstudiosRealizadosModel>
+
+@{
+    ViewData["Title"] = "Estudios Realizados";
+}
+
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+<h1>Estudios Realizados</h1>
+<div class="row">
+
+<p>
+    <a asp-action="Crear">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Matri_NoEmpl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Institucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlDocumento)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Matri_NoEmpl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Institucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlDocumento)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Editar", "Editar", new {  id=item.IdEstudiosRealizados  }) |
+                @Html.ActionLink("Ver", "Detalle", new {  id=item.IdEstudiosRealizados  }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new {  id=item.IdEstudiosRealizados  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+

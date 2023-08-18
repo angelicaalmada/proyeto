@@ -1,7 +1,8 @@
-﻿@model Proyeto.Models.CategoriaModel
+﻿@model Proyeto.Models.TipoCuentaModel
 
 @{
     ViewData["Title"] = "Editar Categoria";
+  
 }
 
 <link rel="stylesheet" href='~/css/StyleSheet1.css' />
@@ -9,27 +10,23 @@
 <link rel="stylesheet" href='~/css/footerFelcidades.css' />
 
 
-<h4>Categoria </h4>
+<h4>Tipo Cuenta </h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdCategoria" class="control-label"></label>
-                <input asp-for="IdCategoria" class="form-control" />
-                <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                <label asp-for="IdTipo" class="control-label"></label>
+                <input asp-for="IdTipo" class="form-control" />
+                <span asp-validation-for="IdTipo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <input type="submit" value="Actualizar" class="btn btn-primary" />
             </div>

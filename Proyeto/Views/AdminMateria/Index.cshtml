@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Proyeto.Models.AdminMateriaModel>
+
+
+<p>
+    <a asp-action="Crear">Crear</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAdminMateria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreMat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAdminMateria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreMat)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new {  id=item.IdAdminMateria }) |
+                @Html.ActionLink("Detalle", "Detalle", new {  id=item.IdAdminMateria }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new {  id=item.IdAdminMateria })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -16,5 +16,5 @@ public partial class DocumentoModel
     public string Urldocumento { get; set; } = null!;
 
 
-    public virtual CategoriaModel? Categoria { get; set; }
+    public virtual TipoCuentaModel? Categoria { get; set; }
 }

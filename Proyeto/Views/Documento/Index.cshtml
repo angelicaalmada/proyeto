@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Proyeto.Models.DocumentoModel>
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+
+<h1>prueba de pagina de inivio</h1>
+<div class="row">
+<table class="table">
+    <thead>
+        <tr>
+            <td>IdDocumento</td>
+            <td>Estatus</td>
+                <td>CoAutor</td>
+                <td></td>
+        </tr>
+     </thead>
+     <tbody>
+
+@foreach (var item in Model) {
+         <tr>
+                    <td> @Html.DisplayFor(modelItem => item.IdDocumento)</td>
+                    <td> @Html.DisplayFor(modelItem => item.Estatus)</td>
+                    <td> @Html.DisplayFor(modelItem => item.CoAutor)</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new {  id=item.IdDocumento  })
+
+                    </td>
+
+         </tr>
+}
+     </tbody>
+    
+</table>
+
+</div>

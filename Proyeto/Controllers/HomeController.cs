@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyeto.datos;
 using Proyeto.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Proyeto.Controllers
 {
@@ -24,7 +28,7 @@ namespace Proyeto.Controllers
         }
         public IActionResult CerrarSesion()
         {
-            HttpContext.Session.Clear();
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);            
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
@@ -32,38 +36,76 @@ namespace Proyeto.Controllers
         {
             UsuarioModel us = _usuarioDatos.Login(nombreUsuario, contrasena);
             //UsuarioModel? us = _context.Usuarios.Where(u => u.NombreUsuario == nombreUs && u.Contrasena == contrasena).FirstOrDefault();
-            if (us == null)
+            if (us.NombreUsuario == null)
             {
                 ViewData["msj"] = "Usuario o contraseña invalida";
                 return View();
             }
             else
             {
-               
-                HttpContext.Session.SetString("usuario", us.NombreUsuario);
-                HttpContext.Session.SetString("autor", us.IdAutor1.ToString());
+                List<Claim> claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, us.NombreUsuario),
+                    new Claim(ClaimTypes.NameIdentifier , us.IdAutor1.ToString())
+                };
+                if (us.EsAdmin == 1)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                }
+                else
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "user"));
+
+                }
+
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+
+                AuthenticationProperties properties = new AuthenticationProperties()
+                {
+                    AllowRefresh = true,
+                };
+
+                HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), properties
+                    );
+
 
                 return RedirectToAction("Entrada", "Home");
+
+                //HttpContext.Session.SetString("usuario", us.NombreUsuario);
+                //HttpContext.Session.SetString("autor", us.IdAutor1.ToString());
+                //HttpContext.Session.SetString("EsAdmin", us.EsAdmin.ToString());
+                //if (us.EsAdmin == 1)
+                //{
+                //    return RedirectToAction("Index", "Usuario");
+                //}
+                //else
+                //{
+                //    return RedirectToAction("Entrada", "Home");
+                    
+                //}
             }
 
         }
-
+        [Authorize]
 
         public IActionResult Privacy()
         {
             return View();
         }
 
-       
+        [Authorize]
         public IActionResult Entrada()
         {         
                 return View();
         }
-
+        [Authorize]
         public IActionResult HistorialAcademico()
         {
             return View();
         }
+        [Authorize]
         public IActionResult ProductoAcademico()
         {
             return View();

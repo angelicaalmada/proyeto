@@ -1,0 +1,26 @@
+﻿@model Proyeto.Models.CarreraAdminModel
+@{
+        ViewData["Title"] = "Nueva Carrera";
+}
+    
+
+<div class="card col-8">
+    <div class="card-header">
+        Crear Carrera
+    </div>
+    <div class="card-body justify-content-center">
+        <form asp-action="Crear" asp-controller="AdminCarrera" method="post"> 
+            <div class="col-md-4 mb-3">
+                <label for="staticEmail2">Nombre</label>
+                <input  asp-for="Nombre" type="text" class="form-control"/>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-primary mb-3">Confirmar</button>
+                <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>

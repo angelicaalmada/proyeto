@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyeto.datos;
 using Proyeto.Models;
 
 namespace Proyeto.Controllers
 {
+    [Authorize]
     public class NivelEstudioController : Controller
     {
         NivelEstudioDatos _nivelDatos = new NivelEstudioDatos();

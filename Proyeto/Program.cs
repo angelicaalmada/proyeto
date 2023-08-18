@@ -1,19 +1,33 @@
 using Microsoft.EntityFrameworkCore;
 using Proyeto.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddDbContext<SisCadticContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection"));
-//});
-
-builder.Services.AddSession(options => {
-    options.IdleTimeout = TimeSpan.FromMinutes(20);//You can set Time   
+builder.Services.AddControllersWithViews(option=>
+{
+    option.Filters.Add(
+        new ResponseCacheAttribute
+        {
+            NoStore = true,
+            Location= ResponseCacheLocation.None,
+        }
+        );
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option=>
+    {
+        option.LoginPath = "/Home/Index";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,8 +43,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
-app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

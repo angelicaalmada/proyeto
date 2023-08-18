@@ -1,17 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Proyeto.datos;
 using Proyeto.Models;
 
 namespace Proyeto.Controllers
 {
-    public class CategoriaController : Controller
+    [Authorize]
+    public class TipoCuentaController : Controller
     {
-        CategoriaDatos _datos = new CategoriaDatos();
+        TipoCuentaDatos _datos = new TipoCuentaDatos();
+
+        [HttpGet]
         public IActionResult Index()
         {
-            List<CategoriaModel> lista = _datos.Listar();
-            return View(lista);
+            List<TipoCuentaModel> lista = _datos.Listar();
+            return View(lista); 
         }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -20,7 +26,7 @@ namespace Proyeto.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("IdCategoria,Descripcion,Tipo")] CategoriaModel categoria)
+        public ActionResult Create([Bind("IdTipo,Descripcion")] TipoCuentaModel categoria)
         {
             try
             {
@@ -40,7 +46,7 @@ namespace Proyeto.Controllers
 
         public ActionResult Details(int id)
         {
-            CategoriaModel categoria = _datos.Obtener(id);
+            TipoCuentaModel categoria = _datos.Obtener(id);
 
             return View(categoria);
         }
@@ -48,7 +54,7 @@ namespace Proyeto.Controllers
         // GET: NivelEstudioController/Edit/5
         public ActionResult Edit(int id)
         {
-            CategoriaModel categoria = _datos.Obtener(id);
+            TipoCuentaModel categoria = _datos.Obtener(id);
 
             return View(categoria);
         }
@@ -56,7 +62,7 @@ namespace Proyeto.Controllers
         // POST: NivelEstudioController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("IdCategoria,Descripcion,Tipo")] CategoriaModel categoria)
+        public ActionResult Edit(int id, [Bind("IdTipo,Descripcion")] TipoCuentaModel categoria)
         {
             try
             {
@@ -74,18 +80,18 @@ namespace Proyeto.Controllers
             }
         }
 
-        // GET: NivelEstudioController/Delete/5
+        // GET: 
         public ActionResult Delete(int id)
         {
-            CategoriaModel categoria = _datos.Obtener(id);
+            TipoCuentaModel categoria = _datos.Obtener(id);
 
             return View(categoria);
         }
 
-        // POST: NivelEstudioController/Delete/5
+        // POST:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, [Bind("IdCategoria,Descripcion,Tipo")] CategoriaModel categoria)
+        public ActionResult Delete(int id, [Bind("IdTipo,Descripcion")] TipoCuentaModel categoria)
         {
             try
             {

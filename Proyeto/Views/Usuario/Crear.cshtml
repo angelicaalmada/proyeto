@@ -1,0 +1,111 @@
+﻿@model Proyeto.Models.UsuarioModel
+
+
+
+@{
+    ViewData["Title"] = "Nuevo usuario";
+  
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+
+<h4>Crear Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label  asp-for="NombreUsuario" class="control-label"></label>
+                <input asp-for="NombreUsuario" class="form-control" />
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+
+                @if (ViewData["mensaje"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["mensaje"]
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasena" class="control-label"></label>
+                <input asp-for="Contrasena" class="form-control" />
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Autor.Nombre" class="control-label"></label>
+                <input asp-for="Autor.Nombre" class="form-control" />
+                <span asp-validation-for="Autor.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.ApePaterno" class="control-label"></label>
+                <input asp-for="Autor.ApePaterno" class="form-control" />
+                <span asp-validation-for="Autor.ApePaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.ApeMaterno" class="control-label"></label>
+                <input asp-for="Autor.ApeMaterno" class="form-control" />
+                <span asp-validation-for="Autor.ApeMaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.Matricula" class="control-label"></label>
+                <input asp-for="Autor.Matricula" class="form-control" />
+                <span asp-validation-for="Autor.Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.NumEmpleado" class="control-label"></label>
+                <input asp-for="Autor.NumEmpleado" class="form-control" />
+                <span asp-validation-for="Autor.NumEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.TipoCuenta" class="control-label"></label>
+                @Html.DropDownList("Autor.IdTipoCuenta", (IEnumerable<SelectListItem>)ViewData["IdTipoCuenta"], new { @class = "form-control"})
+                <span asp-validation-for="Autor.TipoCuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.NumTelefono" class="control-label"></label>
+                <input asp-for="Autor.NumTelefono" class="form-control" />
+                <span asp-validation-for="Autor.NumTelefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.FechaNaci" class="control-label"></label>
+                <input asp-for="Autor.FechaNaci" class="form-control" />
+                <span asp-validation-for="Autor.FechaNaci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.CuerpoAcademico" class="control-label"></label>
+                <input asp-for="Autor.CuerpoAcademico" class="form-control" />
+                <span asp-validation-for="Autor.CuerpoAcademico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.AreaEstudios" class="control-label"></label>
+                <input asp-for="Autor.AreaEstudios" class="form-control" />
+                <span asp-validation-for="Autor.AreaEstudios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor.IdNivelEstudios1" class="control-label"></label>
+
+                @Html.DropDownList("Autor.IdNivelEstudios1", (IEnumerable<SelectListItem>)ViewData["IdNivelEstudios1"], new { @class = "form-control"})
+                <span asp-validation-for="Autor.IdNivelEstudios1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+

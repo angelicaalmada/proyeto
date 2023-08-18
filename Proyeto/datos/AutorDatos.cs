@@ -27,7 +27,7 @@ namespace Proyeto.datos
                             ApeMaterno = dr["ApeMaterno"].ToString(),
                             Matricula = dr["Matricula"] != DBNull.Value ? Convert.ToInt32(dr["Matricula"]) : 0,
                            NumEmpleado = dr["NumEmpleado"] != DBNull.Value ? Convert.ToInt32(dr["NumEmpleado"]) : 0,
-                            TipoCuenta = dr["TipoCuenta"].ToString(),
+                            IdTipoCuenta = Convert.ToInt32(dr["IdTipoCuenta"]),
                             NumTelefono = dr["NumTelefono"].ToString(),
                             FechaNaci = Convert.ToDateTime(dr["FechaNaci"]),
                             CuerpoAcademico = dr["CuerpoAcademico"].ToString(),
@@ -63,7 +63,7 @@ namespace Proyeto.datos
                         _autor.ApeMaterno = dr["ApeMaterno"].ToString();
                         _autor.Matricula = dr["Matricula"] != DBNull.Value ? Convert.ToInt32(dr["Matricula"]):0;
                         _autor.NumEmpleado = dr["NumEmpleado"]!=DBNull.Value?Convert.ToInt32(dr["NumEmpleado"]):0;
-                        _autor.TipoCuenta = dr["TipoCuenta"].ToString();
+                        _autor.IdTipoCuenta = Convert.ToInt32(dr["IdTipoCuenta"]);
                         _autor.NumTelefono = dr["NumTelefono"].ToString();
                         _autor.FechaNaci = Convert.ToDateTime(dr["FechaNaci"]);
                         _autor.CuerpoAcademico = dr["CuerpoAcademico"].ToString();
@@ -91,7 +91,7 @@ namespace Proyeto.datos
                     cmd.Parameters.AddWithValue("ApeMaterno", model.ApeMaterno);
                     cmd.Parameters.AddWithValue("Matricula", model.Matricula);
                     cmd.Parameters.AddWithValue("NumEmpleado", model.NumEmpleado);
-                    cmd.Parameters.AddWithValue("TipoCuenta", model.TipoCuenta);
+                    cmd.Parameters.AddWithValue("IdTipoCuenta", model.IdTipoCuenta);
                     cmd.Parameters.AddWithValue("NumTelefono", model.NumTelefono);
                     cmd.Parameters.AddWithValue("FechaNaci", model.FechaNaci);
                     cmd.Parameters.AddWithValue("CuerpoAcademico", model.CuerpoAcademico);
@@ -137,7 +137,7 @@ namespace Proyeto.datos
                     cmd.Parameters.AddWithValue("ApeMaterno", model.ApeMaterno);
                     cmd.Parameters.AddWithValue("Matricula", model.Matricula);
                     cmd.Parameters.AddWithValue("NumEmpleado", model.NumEmpleado);
-                    cmd.Parameters.AddWithValue("TipoCuenta", model.TipoCuenta);
+                    cmd.Parameters.AddWithValue("IdTipoCuenta", model.IdTipoCuenta);
                     cmd.Parameters.AddWithValue("NumTelefono", model.NumTelefono);
                     cmd.Parameters.AddWithValue("FechaNaci", model.FechaNaci);
                     cmd.Parameters.AddWithValue("CuerpoAcademico", model.CuerpoAcademico);

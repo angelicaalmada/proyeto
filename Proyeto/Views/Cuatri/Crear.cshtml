@@ -1,8 +1,10 @@
-﻿@model Proyeto.Models.CategoriaModel
+﻿@model Proyeto.Models.CuatriModel
 
+
+<!DOCTYPE html>
 
 @{
-    ViewData["Title"] = "Nueva Categoria";
+    ViewData["Title"] = "Nuevo Cuatri";
 }
 
 <link rel="stylesheet" href='~/css/StyleSheet1.css' />
@@ -11,23 +13,24 @@
 
 
 
-<h4>Nueva Categoria</h4>
+<h4>Cuatri</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Crear" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
            
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                <label asp-for="NombreCuatri" class="control-label"></label>
+                <input asp-for="NombreCuatri" class="form-control" />
+                <span asp-validation-for="NombreCuatri" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
+                <label  class="control-label">Documento</label>
+                <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
+               
             </div>
+           
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
@@ -36,7 +39,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Regresar</a>
+    <a asp-action="Index">Regresar a la lista</a>
 </div>
-
 

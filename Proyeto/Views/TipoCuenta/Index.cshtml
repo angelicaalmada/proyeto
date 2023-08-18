@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Proyeto.Models.CategoriaModel>
+﻿@model IEnumerable<Proyeto.Models.TipoCuentaModel>
 
 @{
-    ViewData["Title"] = "Categoria";
+    ViewData["Title"] = "Tipo cuenta";
+    
 }
 
 
@@ -10,7 +11,7 @@
 <link rel="stylesheet" href='~/css/footerFelcidades.css' />
 
 
-<h1>Categoria</h1>
+<h1>Tipo Cuenta</h1>
 <div class="row">
 <p>
     <a asp-action="Create">Nuevo</a>
@@ -18,15 +19,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCategoria)
+            <th>                    
+               @Html.DisplayNameFor(model => model.IdTipo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
+          
             <th></th>
         </tr>
     </thead>
@@ -34,18 +33,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCategoria)
+                @Html.DisplayFor(modelItem => item.IdTipo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.IdCategoria  }) |
-                    @Html.ActionLink("Ver", "Details", new {  id=item.IdCategoria  }) |
-                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.IdCategoria  })
+                @Html.ActionLink("Editar", "Edit", new {  id=item.IdTipo  }) |
+                    @Html.ActionLink("Ver", "Details", new {  id=item.IdTipo  }) |
+                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.IdTipo  })
             </td>
         </tr>
 }

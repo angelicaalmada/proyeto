@@ -1,0 +1,57 @@
+﻿@model Proyeto.Models.EstudiosRealizadosModel
+
+@{
+    ViewData["Title"] = "Nuevo Estudio Realizado";
+}
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+<h4>Estudios Realizados</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>           
+            <div class="form-group">
+                <label asp-for="Matri_NoEmpl" class="control-label"></label>
+                <input asp-for="Matri_NoEmpl" class="form-control" />
+                <span asp-validation-for="Matri_NoEmpl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCurso" class="control-label"></label>
+                <input asp-for="NombreCurso" class="form-control" />
+                <span asp-validation-for="NombreCurso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duracion" class="control-label"></label>
+                <input asp-for="Duracion" class="form-control" />
+                <span asp-validation-for="Duracion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Institucion" class="control-label"></label>
+                <input asp-for="Institucion" class="form-control" />
+                <span asp-validation-for="Institucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Documento</label>
+                <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
+            </div>
+         
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+

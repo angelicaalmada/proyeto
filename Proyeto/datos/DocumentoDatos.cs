@@ -6,7 +6,7 @@ namespace Proyeto.datos
 {
     public class DocumentoDatos
     {
-        public List<DocumentoModel> Listar()
+        public List<DocumentoModel>Listar()
         {
             List<DocumentoModel> Lista = new List<DocumentoModel>();
             var cn = new Conexion();
@@ -53,8 +53,8 @@ namespace Proyeto.datos
                     while (dr.Read())
                     {
 
-                        _documento.IdDocumento = Convert.ToInt32(dr["NivelEstudiosId"]);
-                        _documento.Estatus = dr["NombreNivel"].ToString();
+                        _documento.IdDocumento = Convert.ToInt32(dr["IdDocumento"]);
+                        _documento.Estatus = dr["Estatus"].ToString();
                         _documento.CoAutor = dr["CoAutor"].ToString();
                         _documento.IdCategoria1 = Convert.ToInt32(dr["IdCategoria1"]);
                         _documento.Urldocumento = dr["Urldocumento"].ToString();

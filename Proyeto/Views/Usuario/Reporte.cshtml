@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Proyeto.Models.UsuarioAutorModel>
+
+@{
+    ViewData["Title"] = "Reporte de Usuarios";
+}
+
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+
+<h1>Reporte de Usuarios</h1>
+<div class="row">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAutor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApePaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApeMaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumEmpleado)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.NumTelefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNaci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CuerpoAcademico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaEstudios)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NivelEstudio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAutor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApePaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApeMaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumEmpleado)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.NumTelefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNaci)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CuerpoAcademico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaEstudios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelEstudio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+

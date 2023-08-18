@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Proyeto.Models.CuatriModel>
+
+@{
+    ViewData["Title"] = "Cuatri";
+}
+
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+<p>
+    <a asp-action="Crear">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCuatrimestre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCuatri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAutor1)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCuatrimestre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCuatri)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrlDocumento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAutor1)
+                </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new {  id=item.IdCuatrimestre }) |
+                @Html.ActionLink("Detalle", "Detalle", new {  id=item.IdCuatrimestre }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new {  id=item.IdCuatrimestre })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

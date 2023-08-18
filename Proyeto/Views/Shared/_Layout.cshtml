@@ -23,21 +23,33 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                   
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="datosCompletos" asp-action="index">Perfil</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Entrada">Principal</a>
                         </li>
+                      
+                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="NivelEstudio" asp-action="Index">Niveles</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoCuenta" asp-action="Index">Tipo Cuenta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categoria" asp-action="Index">Categorias</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="NivelEstudio" asp-action="Index">Nivel Estudio</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AdminCarrera" asp-action="Index">Admin Carrera</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AdminMateria" asp-action="Index">Admin Materia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                        </li>
+                       
                     </ul>
                 </div>
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="datosCompletos" asp-action="index">Perfil</a>
+                    </div>
                 <div class="navbar-nav ms-auto">
                     <a id="cerrasSession" asp-controller="Home" asp-action="CerrarSesion" class="nav-item nav-link">Cerrar Sesion</a>
                 </div>

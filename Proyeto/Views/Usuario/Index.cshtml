@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Proyeto.Models.UsuarioAutorModel>
+
+@{
+    ViewData["Title"] = "Usuario";
+   
+}
+
+
+<link rel="stylesheet" href='~/css/StyleSheet1.css' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+
+<p>
+    <a asp-action="Crear">Crear Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+         
+                @Html.DisplayNameFor(model => model.NumTelefono)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.CuerpoAcademico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @($"{item.Nombre} {item.ApePaterno} {item.ApeMaterno}")
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.NumTelefono)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.CuerpoAcademico)
+            </td>         
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id=item.IdAutor }) |
+                    @Html.ActionLink("Detalle", "Detalle", new { id=item.IdAutor }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IdAutor })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
