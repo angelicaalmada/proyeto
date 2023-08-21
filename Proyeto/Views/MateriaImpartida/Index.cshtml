@@ -28,9 +28,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Grupo)
             </th>
+            <!--
             <th>
                 @Html.DisplayNameFor(model => model.FechaCuatri)
             </th>
+            -->
             <th>
                 @Html.DisplayNameFor(model => model.UrlDocumento)
             </th>
@@ -52,13 +54,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Grupo)
             </td>
+            <!--
             <td>
                 @Html.DisplayFor(modelItem => item.FechaCuatri)
             </td>
+            -->
             <td>
                 @Html.DisplayFor(modelItem => item.UrlDocumento)
             </td>
-           
+            
             <td>
                 @Html.ActionLink("Editar", "Editar", new {  id=item.IdMateria }) |
                 @Html.ActionLink("Detalles", "Detalle", new {  id=item.IdMateria}) |

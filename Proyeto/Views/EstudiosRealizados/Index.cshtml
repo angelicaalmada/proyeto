@@ -4,75 +4,82 @@
     ViewData["Title"] = "Estudios Realizados";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/css/footerFelcidades.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
 
-<link rel="stylesheet" href='~/css/StyleSheet1.css' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
 
+        .table {
+            margin-top: 20px;
+        }
 
-<h1>Estudios Realizados</h1>
-<div class="row">
+        /* Border style for each row */
+        .table-bordered tbody tr {
+            border-bottom: 1px solid #dee2e6;
+        }
 
-<p>
-    <a asp-action="Crear">Nuevo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.Matri_NoEmpl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreCurso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duracion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Institucion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlDocumento)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Matri_NoEmpl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCurso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Institucion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrlDocumento)
-            </td>
-            
-            <td>
-                @Html.ActionLink("Editar", "Editar", new {  id=item.IdEstudiosRealizados  }) |
-                @Html.ActionLink("Ver", "Detalle", new {  id=item.IdEstudiosRealizados  }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new {  id=item.IdEstudiosRealizados  })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
-
+        /* Adding padding and aligning text in cells */
+        .table td, .table th {
+            padding: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estudios Realizados</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <a class="btn btn-primary" asp-action="Crear">Nuevo</a>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.NombreCurso)</th>
+                                <th>@Html.DisplayNameFor(model => model.Duracion)</th>
+                                <th>@Html.DisplayNameFor(model => model.Institucion)</th>
+                                <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                                <th>@Html.DisplayNameFor(model => model.UrlDocumento)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.NombreCurso)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Duracion)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Institucion)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UrlDocumento)</td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Editar", new { id = item.IdEstudiosRealizados }, new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Ver", "Detalle", new { id = item.IdEstudiosRealizados }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdEstudiosRealizados }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
