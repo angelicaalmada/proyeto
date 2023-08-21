@@ -33,6 +33,9 @@ namespace Proyeto.Controllers
 
         public IActionResult Crear()
         {
+            var directions = from RolUsuario d in Enum.GetValues(typeof(RolUsuario))
+                             select new { ID = (int)d, Name = d.ToString() };
+            ViewData["Rol"] = new SelectList(directions, "ID", "Name");
             var listatipos = _datoscuenta.Listar();
             ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");
             var lista = _datosNivel.Listar();          
@@ -45,7 +48,7 @@ namespace Proyeto.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind("IdAutor,Nombre,ApePaterno,ApeMaterno,Matricula,NumEmpleado,IdTipoCuenta,NumTelefono,FechaNaci,CuerpoAcademico,AreaEstudios,IdNivelEstudios1")] AutorModel autor, [Bind("NombreUsuario, Correo, Contrasena, EsAdmin")] UsuarioModel usuario)
+        public async Task<IActionResult> Crear([Bind("IdAutor,Nombre,ApePaterno,ApeMaterno,Matricula,NumEmpleado,IdTipoCuenta,NumTelefono,FechaNaci,CuerpoAcademico,AreaEstudios,IdNivelEstudios1")] AutorModel autor, [Bind("NombreUsuario, Correo, Contrasena, Rol, EsAdmin")] UsuarioModel usuario)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +68,11 @@ namespace Proyeto.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            //ViewData["IdNivelEstudios1"] = new SelectList(_context.NivelEstudios, "NivelEstudiosId", "NivelEstudiosId", autor.IdNivelEstudios1);
+
+            var directions = from RolUsuario d in Enum.GetValues(typeof(RolUsuario))
+                             select new { ID = (int)d, Name = d.ToString() };
+            ViewData["Rol"] = new SelectList(directions, "ID", "Name");
+           
             var listatipos = _datoscuenta.Listar();
             ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");
             var lista = _datosNivel.Listar();
@@ -91,9 +98,12 @@ namespace Proyeto.Controllers
             var usuario = _datosUsuario.ObtenerByAutor(autor.IdAutor);
             usuario.Autor = autor;
             usuario.IdAutor1 = autor.IdAutor;
+
+            var directions = from RolUsuario d in Enum.GetValues(typeof(RolUsuario))
+                             select new { ID = (int)d, Name = d.ToString() };
+            ViewData["Rol"] = new SelectList(directions, "ID", "Name");
             var listatipos = _datoscuenta.Listar();
             ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion", autor.IdTipoCuenta);
-
             var lista = _datosNivel.Listar();
             ViewData["IdNivelEstudios1"] = new SelectList(lista, "NivelEstudiosId", "NombreNivel", autor.IdNivelEstudios1);
 
@@ -105,7 +115,7 @@ namespace Proyeto.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("IdAutor,Nombre,ApePaterno,ApeMaterno,Matricula,NumEmpleado,IdTipoCuenta,NumTelefono,FechaNaci,CuerpoAcademico,AreaEstudios,IdNivelEstudios1")] AutorModel autor, [Bind("NombreUsuario, Correo, Contrasena, EsAdmin")] UsuarioModel usuario)
+        public async Task<IActionResult> Editar(int id, [Bind("IdAutor,Nombre,ApePaterno,ApeMaterno,Matricula,NumEmpleado,IdTipoCuenta,NumTelefono,FechaNaci,CuerpoAcademico,AreaEstudios,IdNivelEstudios1")] AutorModel autor, [Bind("NombreUsuario, Correo, Contrasena, Rol, EsAdmin")] UsuarioModel usuario)
         {
             if (id != autor.IdAutor)
             {
@@ -132,9 +142,12 @@ namespace Proyeto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            var directions = from RolUsuario d in Enum.GetValues(typeof(RolUsuario))
+                             select new { ID = (int)d, Name = d.ToString() };
+            ViewData["Rol"] = new SelectList(directions, "ID", "Name");
             var listatipos = _datoscuenta.Listar();
             ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");
-
             var lista = _datosNivel.Listar();
             ViewData["IdNivelEstudios1"] = new SelectList(lista, "NivelEstudiosId", "NombreNivel");
             //ViewData["IdNivelEstudios1"] = new SelectList(_context.NivelEstudios, "NivelEstudiosId", "NivelEstudiosId", autor.IdNivelEstudios1);
@@ -182,6 +195,26 @@ namespace Proyeto.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+
+        public IActionResult CambiarContrasena()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CambiarContrasena(string Correo, string Contrasena)
+        {
+            bool respuesta = _datosUsuario.CambiarContrasena(Correo, Utilidad.EncriptarClave(Contrasena));
+            if (!respuesta)
+            {
+                ViewData["Mensaje"] = "El correo no existe";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
             }
         }
 

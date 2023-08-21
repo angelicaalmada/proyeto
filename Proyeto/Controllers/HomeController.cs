@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyeto.datos;
 using Proyeto.Models;
+using Proyeto.Recursos;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -34,6 +35,7 @@ namespace Proyeto.Controllers
         [HttpPost]
         public IActionResult Index(string nombreUsuario, string contrasena)
         {
+            contrasena = Utilidad.EncriptarClave(contrasena);
             UsuarioModel us = _usuarioDatos.Login(nombreUsuario, contrasena);
             //UsuarioModel? us = _context.Usuarios.Where(u => u.NombreUsuario == nombreUs && u.Contrasena == contrasena).FirstOrDefault();
             if (us.NombreUsuario == null)
@@ -48,15 +50,9 @@ namespace Proyeto.Controllers
                     new Claim(ClaimTypes.Name, us.NombreUsuario),
                     new Claim(ClaimTypes.NameIdentifier , us.IdAutor1.ToString())
                 };
-                if (us.EsAdmin == 1)
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, "admin"));
-                }
-                else
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, "user"));
-
-                }
+              
+                    claims.Add(new Claim(ClaimTypes.Role, ((RolUsuario)us.Rol).ToString()));
+               
 
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
 

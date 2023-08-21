@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using Proyeto.Models;
+using Proyeto.Recursos;
 
 namespace Proyeto.datos
 {
@@ -25,7 +26,8 @@ namespace Proyeto.datos
                            NombreUsuario = dr["NombreUsuario"].ToString(),
                            Correo = dr["Correo"].ToString(),
                            Contrasena = dr["Contrasena"].ToString(),
-                           IdAutor1 = Convert.ToInt32(dr["IdAutor1"])
+                           Rol = dr["Esadmin"] != DBNull.Value ? Convert.ToInt32(dr["Esadmin"]) : (int)RolUsuario.Alumno,
+                        IdAutor1 = Convert.ToInt32(dr["IdAutor1"])
                         });
                     }
                 }
@@ -52,6 +54,7 @@ namespace Proyeto.datos
                         _usuario.NombreUsuario = dr["NombreUsuario"].ToString();
                         _usuario.Correo = dr["Correo"].ToString();
                         _usuario.Contrasena = dr["Contrasena"].ToString();
+                        _usuario.Rol = dr["Esadmin"] != DBNull.Value ? Convert.ToInt32(dr["Esadmin"]) : (int)RolUsuario.Alumno;
                         _usuario.IdAutor1 = Convert.ToInt32(dr["IdAutor1"]);
                     }
                 }
@@ -79,6 +82,7 @@ namespace Proyeto.datos
                         _usuario.NombreUsuario = dr["NombreUsuario"].ToString();
                         _usuario.Correo = dr["Correo"].ToString();
                         _usuario.Contrasena = dr["Contrasena"].ToString();
+                        _usuario.Rol = dr["Esadmin"] != DBNull.Value? Convert.ToInt32(dr["Esadmin"]):(int)RolUsuario.Alumno;
                         _usuario.IdAutor1 = Convert.ToInt32(dr["IdAutor1"]);
                     }
                 }
@@ -109,7 +113,8 @@ namespace Proyeto.datos
                         _usuario.Correo = dr["Correo"].ToString();
                         _usuario.Contrasena = dr["Contrasena"].ToString();
                         _usuario.IdAutor1 = Convert.ToInt32(dr["IdAutor1"]);
-                        _usuario.EsAdmin = dr["EsAdmin"]!=DBNull.Value? Convert.ToInt32(dr["EsAdmin"]) : 0  ;
+                        _usuario.Rol = dr["Esadmin"] != DBNull.Value ? Convert.ToInt32(dr["Esadmin"]) : (int)RolUsuario.Alumno;
+                       
                     }
                 }
             }
@@ -120,7 +125,7 @@ namespace Proyeto.datos
         public bool GuardarUsuario(UsuarioModel model)//Procedimiento almacenado Guardar
         {
             bool respuesta;
-            if (true)
+            if (!ExisteUsuario(model.NombreUsuario))
             {
                 try
                 {
@@ -132,6 +137,7 @@ namespace Proyeto.datos
                         cmd.Parameters.AddWithValue("NombreUsuario", model.NombreUsuario);
                         cmd.Parameters.AddWithValue("Correo", model.Correo);
                         cmd.Parameters.AddWithValue("Contrasena", model.Contrasena);
+                        cmd.Parameters.AddWithValue("Esadmin", model.Rol);
                         cmd.Parameters.AddWithValue("IdAutor", model.IdAutor1);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.ExecuteNonQuery();
@@ -166,6 +172,7 @@ namespace Proyeto.datos
                     cmd.Parameters.AddWithValue("NombreUsuario", model.NombreUsuario);                 
                     cmd.Parameters.AddWithValue("Correo", model.Correo);
                     cmd.Parameters.AddWithValue("Contrasena", model.Contrasena);
+                    cmd.Parameters.AddWithValue("Esadmin", model.Rol);
                     cmd.Parameters.AddWithValue("IdAutor", model.IdAutor1);         
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
@@ -240,6 +247,32 @@ namespace Proyeto.datos
 
         }
 
+
+        //cambiar contraseña
+        public bool CambiarContrasena(string Correo, string Contrasena)
+        {
+            bool respuesta;
+            try
+            {
+                var cn = new Conexion();
+                using (var conexion = new SqlConnection(cn.getCadenaSql()))
+                {
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CambiarContrasena", conexion);
+                    cmd.Parameters.AddWithValue("Correo", Correo);
+                    cmd.Parameters.AddWithValue("Contrasena", Contrasena);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
+                respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                respuesta = false;
+            }
+            return respuesta;
+        }
 
 
     }

@@ -1,0 +1,29 @@
+﻿@model List<Proyeto.Models.HistorialDocModel>
+
+<h2>Historial de Documentos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID de Autor</th>
+            <th>Tipo de Documento</th>
+            <th>ID de Documento</th>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Nombre del Documento Material</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdAutor</td>
+                <td>@item.TipoDoc</td>
+                <td>@item.IdDoc</td>
+                <td>@item.Fecha.ToShortDateString()</td>
+                <td>@item.Nombre</td>
+                <td>@item.NombreDocMat</td>
+            </tr>
+        }
+    </tbody>
+</table>

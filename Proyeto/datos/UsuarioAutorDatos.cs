@@ -28,7 +28,6 @@ namespace Proyeto.datos
                             ApeMaterno = dr["ApeMaterno"].ToString(),
                             Matricula = dr["Matricula"] != DBNull.Value ? Convert.ToInt32(dr["Matricula"]) : 0,
                             NumEmpleado = dr["NumEmpleado"] != DBNull.Value ? Convert.ToInt32(dr["NumEmpleado"]) : 0,
-                           
                             NumTelefono = dr["NumTelefono"].ToString(),
                             FechaNaci = Convert.ToDateTime(dr["FechaNaci"]),
                             CuerpoAcademico = dr["CuerpoAcademico"].ToString(),
@@ -36,7 +35,7 @@ namespace Proyeto.datos
                             NivelEstudio = dr["NombreNivel"].ToString(),
                             NombreUsuario = dr["NombreUsuario"].ToString(),
                             Correo = dr["Correo"].ToString(),
-                            //IdNivelEstudios1 = Convert.ToInt32(dr["IdNivelEstudios1"])
+                         
 
                         });
                     }

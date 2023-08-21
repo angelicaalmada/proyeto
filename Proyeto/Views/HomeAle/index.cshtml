@@ -1,0 +1,44 @@
+﻿@using Proyeto.Models
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<UsuarioModel>?
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @ViewData["Name"]</h1>
+    <!--button onclick="mostrarAlerta()">Mostrar Alerta</button-->
+
+    <form action="@Url.Action("GetUsuarios", "HomeAle")" method="post">
+        <button type="submit">Obtener usuarios</button>
+    </form>
+    <hr />
+    @if (Model != null && Model.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre de Usuario</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>ID de Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usuario in Model)
+                {
+                    <tr>
+                        <td>@usuario.NombreUsuario</td>
+                        <td>@usuario.Correo</td>
+                        <td>@usuario.Contrasena</td>
+                        <td>@usuario.IdAutor1</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @if (Model == null || Model.Count == 0)
+    {
+        <p>Sin usuarios</p>
+    }
+
+</div>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyeto.datos;
 using Proyeto.Models;
+using Proyeto.Recursos;
 
 namespace Proyeto.Controllers
 {
@@ -68,12 +69,27 @@ namespace Proyeto.Controllers
         {
             if (ModelState.IsValid)
             {
-               autor = _autorDatos.Guardar(autor);
-               
-                usuario.IdAutor1 = autor.IdAutor;
-                _usuarioDatos.GuardarUsuario(usuario);
-              
-                return RedirectToAction(nameof(Index));
+                if (_usuarioDatos.ExisteUsuario(usuario.NombreUsuario))
+                {
+                    ViewData["Mensaje"] = "el usuario ingresado ya se encuentra registrado";
+                }
+                else
+                {
+                    if (autor.NumEmpleado > 1 && autor.NumEmpleado <= 1000)
+                    {
+                        usuario.Rol = (int)RolUsuario.Docente;
+                    }
+                    else if (autor.NumEmpleado > 1000)
+                    {
+                        usuario.Rol = (int)RolUsuario.Alumno;
+                    }
+                    autor = _autorDatos.Guardar(autor);
+
+                    usuario.IdAutor1 = autor.IdAutor;
+                    _usuarioDatos.GuardarUsuario(usuario);
+
+                    return RedirectToAction(nameof(Index));
+                }
             }
             var listatipos = _datoscuenta.Listar();
             ViewData["IdTipoCuenta"] = new SelectList(listatipos, "IdTipo", "Descripcion");

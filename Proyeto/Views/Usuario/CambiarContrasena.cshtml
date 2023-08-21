@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Cambiar Contraseña";
+}
+<link rel="stylesheet" href='~/css/footer.css' />
+
+<form class="" asp-action="CambiarContrasena" asp-controller="Usuario" method="post">
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="correo" name=" correo" required />
+        <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="password" name="password" required />
+        <label for="floatingInput">Contraseña nueva </label>
+    </div>
+    <button class="w-100 md-2 btn btn-lg btn-primary" type="submit">actualizar</button>
+    @if (ViewData["Mensaje"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Mensaje"]
+        </div>
+
+    }
+</form>

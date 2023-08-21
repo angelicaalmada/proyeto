@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,8 +24,14 @@ namespace Proyeto.Controllers
         // GET: datosCompletos
         public async Task<IActionResult> Index()
         {
-            string userName = HttpContext.Session.GetString("usuario");
-            int autorId  = Convert.ToInt32(HttpContext.Session.GetString("autor"));
+            int autorId = 0;
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated)
+            {
+                 autorId = Convert.ToInt32(claimUser.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault());
+                
+            }
+
             AutorModel _autor = _autorDatos.Obtener(autorId);
             
             return View(_autor);

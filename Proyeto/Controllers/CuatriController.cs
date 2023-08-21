@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Proyeto.datos;
 using Proyeto.Models;
+using System.Security.Claims;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Proyeto.Controllers
@@ -47,9 +48,14 @@ namespace Proyeto.Controllers
                     Archivo.CopyToAsync(fileStream);
                 }
                 cuatri.UrlDocumento = "/uploads/"+nombreArchivo;
-                //obtiene autor que inicio session
-                int autorId = Convert.ToInt32(HttpContext.Session.GetString("autor"));
-                cuatri.IdAutor1 = autorId;
+                
+                ClaimsPrincipal claimUser = HttpContext.User;
+                if (claimUser.Identity.IsAuthenticated)
+                {
+                    string autorId = claimUser.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault();
+                    cuatri.IdAutor1 = Convert.ToInt32(autorId);
+                }
+               
                 if (ModelState.IsValid)
                 {
                     _datos.Guardar(cuatri);

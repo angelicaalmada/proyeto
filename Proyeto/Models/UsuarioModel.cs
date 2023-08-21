@@ -18,7 +18,7 @@ public  class UsuarioModel
 
     public int? IdAutor1 { get; set; }
 
-    public int? EsAdmin { get; set; }
+    public int? Rol { get; set; }
 
 
 

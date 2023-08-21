@@ -65,7 +65,7 @@ namespace Proyeto.Controllers
                     string autorId = claimUser.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault();
                     materiaImpartida.IdAutor1 = Convert.ToInt32(autorId);
                 }
-                //int autorId = Convert.ToInt32(HttpContext.Session.GetString("autor"));
+             
                
 
                 if (ModelState.IsValid)
