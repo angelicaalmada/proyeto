@@ -1,66 +1,77 @@
 ﻿@model IEnumerable<Proyeto.Models.UsuarioAutorModel>
 
 @{
-    ViewData["Title"] = "Usuario";
-   
+    ViewData["Title"] = "Usuarios";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/css/footerFelcidades.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
 
-<link rel="stylesheet" href='~/css/StyleSheet1.css' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+        .container {
+            margin-top: 20px;
+        }
 
-<p>
-    <a asp-action="Crear">Crear Usuario</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-         
-                @Html.DisplayNameFor(model => model.NumTelefono)
-            </th>            
-            <th>
-                @Html.DisplayNameFor(model => model.CuerpoAcademico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @($"{item.Nombre} {item.ApePaterno} {item.ApeMaterno}")
-            </td>
-         
-            <td>
-                @Html.DisplayFor(modelItem => item.NumTelefono)
-            </td>            
-            <td>
-                @Html.DisplayFor(modelItem => item.CuerpoAcademico)
-            </td>         
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id=item.IdAutor }) |
-                    @Html.ActionLink("Detalle", "Detalle", new { id=item.IdAutor }) |
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IdAutor })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .table {
+            margin-top: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-action {
+            width: calc(33.33% - 10px);
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>
+            <a asp-action="Crear" class="btn btn-primary">Crear Usuario</a>
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Número de Teléfono</th>
+                    <th>Cuerpo Académico</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@($"{item.Nombre} {item.ApePaterno} {item.ApeMaterno}")</td>
+                        <td>@Html.DisplayFor(modelItem => item.NumTelefono)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CuerpoAcademico)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+                        <td class="btn-container">
+                            <a asp-action="Editar" asp-route-id="@item.IdAutor" class="btn btn-primary btn-action">Editar</a>
+                            <a asp-action="Detalle" asp-route-id="@item.IdAutor" class="btn btn-info btn-action">Detalle</a>
+                            <a asp-action="Eliminar" asp-route-id="@item.IdAutor" class="btn btn-danger btn-action">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
