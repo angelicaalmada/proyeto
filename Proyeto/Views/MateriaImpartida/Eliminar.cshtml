@@ -4,65 +4,97 @@
     ViewData["Title"] = "Eliminar Materia Impartida";
 }
 
-<link rel="stylesheet" href='~/css/StyleSheet1.css' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/css/footerFelcidades.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
 
-<h3>¿Estas seguro que deseas eliminar Materia Impartida?</h3>
-<div>
-    <h4>Materia Impartida</h4>
-    <hr />
-    <dl class="row">
-       
-            @Html.HiddenFor(model => model.IdMateria)
-       
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Matricula)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Matricula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarreraModel.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CarreraModel.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MateriaAdmin.NombreMat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MateriaAdmin.NombreMat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Grupo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Grupo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCuatri)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaCuatri)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UrlDocumento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UrlDocumento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAutor1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAutor1)
-        </dd>
-    </dl>
-    
-    <form asp-action="Eliminar">
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Regresar a la lista</a>
-    </form>
-</div>
+        .card-body {
+            padding: 20px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-md-10 offset-md-1">
+                <h3>¿Estás seguro que deseas eliminar Materia Impartida?</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h4>Materia Impartida</h4>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>ID de Materia</th>
+                                <td>@Html.DisplayFor(model => model.IdMateria)</td>
+                            </tr>
+                            <tr>
+                                <th>Matrícula</th>
+                                <td>@Html.DisplayFor(model => model.Matricula)</td>
+                            </tr>
+                            <tr>
+                                <th>Carrera</th>
+                                <td>@Html.DisplayFor(model => model.CarreraModel.Nombre)</td>
+                            </tr>
+                            <tr>
+                                <th>Materia</th>
+                                <td>@Html.DisplayFor(model => model.MateriaAdmin.NombreMat)</td>
+                            </tr>
+                            <tr>
+                                <th>Grupo</th>
+                                <td>@Html.DisplayFor(model => model.Grupo)</td>
+                            </tr>
+                            <tr>
+                                <th>Fecha del Cuatrimestre</th>
+                                <td>@Html.DisplayFor(model => model.FechaCuatri)</td>
+                            </tr>
+                            <tr>
+                                <th>URL del Documento</th>
+                                <td>@Html.DisplayFor(model => model.UrlDocumento)</td>
+                            </tr>
+                            <tr>
+                                <th>ID de Autor</th>
+                                <td>@Html.DisplayFor(model => model.IdAutor1)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form asp-action="Eliminar" class="mt-3">
+                        <div class="btn-group">
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <span style="margin-right: 10px;"></span>
+                            <a asp-action="Index" class="btn btn-secondary">Regresar a la lista</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>
+
 

@@ -23,7 +23,7 @@
 
         .form-container {
             margin-top: 20px;
-            text-align: center;
+            max-width: 600px; /* Adjust this value as needed */
         }
 
         .btn-action {
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <h4>Materia Impartida</h4>
+                <h4 class="text-left">Materia Impartida</h4>
             </div>
         </div>
         <div class="row">
@@ -51,17 +51,48 @@
                         <input asp-for="Matricula" class="form-control" />
                         <span asp-validation-for="Matricula" class="text-danger"></span>
                     </div>
-                    <!-- Rest of the fields... -->
+                    <div class="form-group">
+                        <label asp-for="CarreraModel" class="control-label"></label>
+                        @Html.DropDownList("IdCarrera", (IEnumerable<SelectListItem>)ViewData["IdCarrera"], new { @class = "form-control"})
+
+                        <span asp-validation-for="CarreraModel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MateriaAdmin" class="control-label"></label>
+                        @Html.DropDownList("IdMateriaAdmin", (IEnumerable<SelectListItem>)ViewData["IdMateriaAdmin"], new { @class = "form-control"})
+                        <span asp-validation-for="MateriaAdmin" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Grupo" class="control-label"></label>
+                        <input asp-for="Grupo" class="form-control" />
+                        <span asp-validation-for="Grupo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaCuatri" class="control-label"></label>
+                        <input asp-for="FechaCuatri" class="form-control" />
+                        <span asp-validation-for="FechaCuatri" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UrlDocumento" class="control-label"></label>
+                        <input readonly asp-for="UrlDocumento" class="form-control" />
+                        <span asp-validation-for="UrlDocumento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nuevo Documento</label>
+                        <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
+
+                    </div>
+
+                    <input asp-for="IdAutor1" type="hidden" class="form-control" />
 
                     <div class="form-group">
-                        <input type="submit" value="Guardar" class="btn btn-primary btn-action" />
-                        <a asp-action="Index" class="btn btn-secondary btn-action">Regresar a la lista</a>
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
 </body>
 </html>
-
 
