@@ -4,56 +4,71 @@
     ViewData["Title"] = "Nuevo Estudio Realizado";
 }
 
-<link rel="stylesheet" href='~/css/StyleSheet1.css' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
 
-<h4>Estudios Realizados</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Crear" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>           
-            <!--
-            <div class="form-group">
-                <label asp-for="Matri_NoEmpl" class="control-label"></label>
-                <input asp-for="Matri_NoEmpl" class="form-control" />
-                <span asp-validation-for="Matri_NoEmpl" class="text-danger"></span>
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>@ViewData["Title"]</h4>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <form asp-action="Crear" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="NombreCurso" class="control-label">Nombre del Curso</label>
+                            <input asp-for="NombreCurso" class="form-control" />
+                            <span asp-validation-for="NombreCurso" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Duracion" class="control-label">Duración</label>
+                            <input asp-for="Duracion" class="form-control" />
+                            <span asp-validation-for="Duracion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Institucion" class="control-label">Institución</label>
+                            <input asp-for="Institucion" class="form-control" />
+                            <span asp-validation-for="Institucion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Descripcion" class="control-label">Descripción</label>
+                            <input asp-for="Descripcion" class="form-control" />
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Documento</label>
+                            <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                </div>
+                                <div class="col">
+                                    <a asp-action="Index" class="btn btn-secondary">Regresar a la lista</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            -->
-            <div class="form-group">
-                <label asp-for="NombreCurso" class="control-label"></label>
-                <input asp-for="NombreCurso" class="form-control" />
-                <span asp-validation-for="NombreCurso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duracion" class="control-label"></label>
-                <input asp-for="Duracion" class="form-control" />
-                <span asp-validation-for="Duracion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Institucion" class="control-label"></label>
-                <input asp-for="Institucion" class="form-control" />
-                <span asp-validation-for="Institucion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Documento</label>
-                <input type="file" value="Archivo" name="Archivo" id="Archivo" class="form-control" />
-            </div>
-         
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</body>
+</html>
 
-<div>
-    <a asp-action="Index">Regresar a la lista</a>
-</div>
 

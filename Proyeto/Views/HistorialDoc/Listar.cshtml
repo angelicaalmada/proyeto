@@ -1,29 +1,89 @@
 ﻿@model List<Proyeto.Models.HistorialDocModel>
 
-<h2>Historial de Documentos</h2>
+@{
+    ViewData["Title"] = "Historial de Documentos";
+}
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID de Autor</th>
-            <th>Tipo de Documento</th>
-            <th>ID de Documento</th>
-            <th>Fecha</th>
-            <th>Nombre</th>
-            <th>Nombre del Documento Material</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.IdAutor</td>
-                <td>@item.TipoDoc</td>
-                <td>@item.IdDoc</td>
-                <td>@item.Fecha.ToShortDateString()</td>
-                <td>@item.Nombre</td>
-                <td>@item.NombreDocMat</td>
-            </tr>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/css/footerFelcidades.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
         }
-    </tbody>
-</table>
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        /* Border style for each row */
+        .table-bordered tbody tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        /* Adding padding and aligning text in cells */
+        .table td, .table th {
+            padding: 8px;
+            vertical-align: middle;
+        }
+
+        /* Button styling */
+        .btn-action {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Historial de Documentos</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID de Autor</th>
+                                <th>Tipo de Documento</th>
+                                <th>ID de Documento</th>
+                                <th>Fecha</th>
+                                <th>Nombre</th>
+                                <th>Nombre del Documento Material</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.IdAutor</td>
+                                    <td>@item.TipoDoc</td>
+                                    <td>@item.IdDoc</td>
+                                    <td>@item.Fecha.ToShortDateString()</td>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.NombreDocMat</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            @Html.ActionLink("Detalles", "Detalle", new { id = item.IdDoc }, new { @class = "btn btn-primary btn-sm btn-action" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

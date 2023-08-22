@@ -1,28 +1,82 @@
 ﻿@model Proyeto.Models.AdminMateriaModel
 
+@{
+    ViewData["Title"] = "Eliminar Materia";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 600px;
+            border: none;
+        }
+
+        .card-header {
+            background-color: #dc3545; /* Red color for error */
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Added border styles for the table */
+        table {
+            border: 2px solid #dee2e6;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Confirmar Eliminación
+            </div>
+            <div class="card-body">
+                <h3>¿Estás seguro de que deseas eliminar esto?</h3>
+                <div>
+                    <!--<h4>AdminMateriaModel</h4>-->
+                    <hr />
+                    <table class="table">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.IdAdminMateria)</th>
+                            <td>@Html.DisplayFor(model => model.IdAdminMateria)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.NombreMat)</th>
+                            <td>@Html.DisplayFor(model => model.NombreMat)</td>
+                        </tr>
+                    </table>
+
+                    <form asp-action="Eliminar" class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <a asp-action="Index" class="btn btn-secondary">Regresar a la Lista</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>AdminMateriaModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAdminMateria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAdminMateria)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreMat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreMat)
-        </dd>
-    </dl>
-    
-    <form asp-action="Eliminar">
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Regresar a la lista</a>
-    </form>
-</div>

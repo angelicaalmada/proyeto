@@ -1,36 +1,87 @@
 ﻿@model IEnumerable<Proyeto.Models.AdminMateriaModel>
 
-
-<p>
-    <a asp-action="Crear">Crear</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdAdminMateria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreMat)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAdminMateria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreMat)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new {  id=item.IdAdminMateria }) |
-                @Html.ActionLink("Detalle", "Detalle", new {  id=item.IdAdminMateria }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new {  id=item.IdAdminMateria })
-            </td>
-        </tr>
+@{
+    ViewData["Title"] = "Lista de Materias";
 }
-    </tbody>
-</table>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 1000px; /* Increased width */
+            border: none;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Added border styles for the table */
+        table {
+            border: 2px solid #dee2e6;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Lista de Materias
+            </div>
+            <div class="card-body">
+                <p>
+                    <a asp-action="Crear" class="btn btn-primary">Crear</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.IdAdminMateria)</th>
+                            <th>@Html.DisplayNameFor(model => model.NombreMat)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.IdAdminMateria)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NombreMat)</td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Editar", new { id = item.IdAdminMateria }, new { @class = "btn btn-warning btn-sm" })
+                                    @Html.ActionLink("Detalle", "Detalle", new { id = item.IdAdminMateria }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdAdminMateria }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

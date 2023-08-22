@@ -1,24 +1,57 @@
-﻿@model CarreraAdminModel;
+﻿@model CarreraAdminModel
 @{
-    ViewData["Title"] = "Nueva Carrera";
+    ViewData["Title"] = "Eliminar Materia";
 }
-<div class="card col-8">
-    <div class="card-header">
-        Eliminar materia
-    </div>
-    <div class="card-body justify-content-center">
-        <form asp-action="Eliminar" asp-controller="AdminCarrera" method="post">
-            <input asp-for="IdCaAdmin" type="hidden" class="form-control" />
-            <div class="alert alert-danger" role="alert">
-                ¿Desea eliminar la materia: @Html.DisplayFor(m=>m.Nombre)?
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 600px;
+            border: none;
+        }
+
+        .card-header {
+            background-color: #dc3545;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Eliminar materia
             </div>
+            <div class="card-body">
+                <form asp-action="Eliminar" asp-controller="AdminCarrera" method="post">
+                    <input asp-for="IdCaAdmin" type="hidden" class="form-control" />
+                    <div class="alert alert-danger" role="alert">
+                        ¿Desea eliminar la materia: <strong>@Html.DisplayFor(m => m.Nombre)</strong>?
+                    </div>
 
-            <div class="col-md-4 mb-3">
-                <button type="submit" class="btn btn-danger mnb-3 btn-sm">Eliminar</button>
-                <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
-
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-
-</div>
+</body>
+</html>

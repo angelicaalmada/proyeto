@@ -4,65 +4,85 @@
     ViewData["Title"] = "Detalle de Materia Impartida";
 }
 
-<link rel="stylesheet" href='~/css/StyleSheet1.css' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href='~/css/footerFelcidades.css' />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/css/footerFelcidades.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .btn-action {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h4>Materia Impartida</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Matrícula</th>
+                                <td>@Html.DisplayFor(model => model.Matricula)</td>
+                            </tr>
+                            <tr>
+                                <th>Carrera</th>
+                                <td>@Html.DisplayFor(model => model.CarreraModel.Nombre)</td>
+                            </tr>
+                            <tr>
+                                <th>Materia</th>
+                                <td>@Html.DisplayFor(model => model.MateriaAdmin.NombreMat)</td>
+                            </tr>
+                            <tr>
+                                <th>Grupo</th>
+                                <td>@Html.DisplayFor(model => model.Grupo)</td>
+                            </tr>
+                            <tr>
+                                <th>Fecha del Cuatrimestre</th>
+                                <td>@Html.DisplayFor(model => model.FechaCuatri)</td>
+                            </tr>
+                            <tr>
+                                <th>Documento</th>
+                                <td><a target="_blank" href="@Model.UrlDocumento">Descargar Documento</a></td>
+                            </tr>
+                            <tr>
+                                <th>ID de Autor</th>
+                                <td>@Html.DisplayFor(model => model.IdAutor1)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-left">
+                    <a asp-action="Editar" class="btn btn-info btn-action" asp-route-id="@Model.IdMateria">Editar</a>
+                    <a asp-action="Index" class="btn btn-secondary btn-action">Regresar a la lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 
-
-<div class="row">
-    <h4>Materia Impartida</h4>
-    <hr />
-    <dl class="row">
-       
-       
-        @Html.HiddenFor(model => model.IdMateria)
-       
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Matricula)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Matricula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarreraModel.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CarreraModel.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MateriaAdmin.NombreMat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MateriaAdmin.NombreMat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Grupo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Grupo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCuatri)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaCuatri)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UrlDocumento)
-        </dt>
-        <dd class = "col-sm-10">
-            <a target="_blank" href="@Model.UrlDocumento">Descargar Documento</a>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAutor1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAutor1)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.IdMateria }) |
-    <a asp-action="Index">Regresar a la lista</a>
-</div>

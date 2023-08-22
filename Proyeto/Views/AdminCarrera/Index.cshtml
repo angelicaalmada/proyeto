@@ -1,29 +1,51 @@
-﻿@model List<CarreraAdminModel>;
-@{
-    ViewData["Title"] = "Carreras";
-}
-<div class="card-body">
-    <a asp-action="Crear" asp-controller="AdminCarrera" class="btn btn-primary btn-sm">Crear nueva carrera</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-            </tr>
-        </thead>
-        <tbody>
+﻿@model IEnumerable<Proyeto.Models.CarreraAdminModel>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem=>item.Nombre)
-                    </td>                
-                    <td>
-                        <a asp-action="Editar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-warning btn-sm">Editar</a>
-                        <a asp-action="Eliminar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+@{
+    ViewData["Title"] = "Lista de Carreras";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-body">
+            <a asp-action="Crear" asp-controller="AdminCarrera" class="btn btn-primary btn-sm mb-2">Crear nueva carrera</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>
+                                <a asp-action="Editar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-warning btn-sm">Editar</a>
+                                <a asp-action="Eliminar" asp-controller="AdminCarrera" asp-route-IdCaAdmin="@item.IdCaAdmin" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

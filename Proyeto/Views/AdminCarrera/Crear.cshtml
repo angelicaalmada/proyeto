@@ -1,26 +1,57 @@
 ﻿@model Proyeto.Models.CarreraAdminModel
 @{
-        ViewData["Title"] = "Nueva Carrera";
+    ViewData["Title"] = "Nueva Carrera";
 }
-    
 
-<div class="card col-8">
-    <div class="card-header">
-        Crear Carrera
-    </div>
-    <div class="card-body justify-content-center">
-        <form asp-action="Crear" asp-controller="AdminCarrera" method="post"> 
-            <div class="col-md-4 mb-3">
-                <label for="staticEmail2">Nombre</label>
-                <input  asp-for="Nombre" type="text" class="form-control"/>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 600px;
+            border: none;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Crear Carrera
             </div>
+            <div class="card-body">
+                <form asp-action="Crear" asp-controller="AdminCarrera" method="post">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input asp-for="Nombre" type="text" class="form-control" id="Nombre" />
+                    </div>
 
-            <div class="col-md-4 mb-3">
-                <button type="submit" class="btn btn-primary mb-3">Confirmar</button>
-                <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                        <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-secondary">Volver a la lista</a>
+                    </div>
+                </form>
             </div>
-        </form>
-
+        </div>
     </div>
-
-</div>
+</body>
+</html>

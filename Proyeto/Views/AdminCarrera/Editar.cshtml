@@ -1,21 +1,58 @@
-﻿@model Proyeto.Models.CarreraAdminModel;
+﻿@model Proyeto.Models.CarreraAdminModel
 @{
     ViewData["Title"] = "Nueva Carrera";
 }
-<div class="card col-8">
-    <div class="card-header">Editar Carrera</div>
-</div>
-<div class="card-body justify-content-center">
-    <form asp-action="Editar" asp-controller="AdminCarrera" method="post">
-        <input asp-for="IdCaAdmin" type="hidden" class="form-control" />
-        <div class="col-md-4 mb-3">
-            <label for="staticEmail2">Nombre</label>
-            <input  asp-for="Nombre" type="text" class="form-control"/>
-            <span asp-validation-for="Nombre" class="text-danger"></span>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Additional custom styles can be added here */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 600px;
+            border: none;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Editar Carrera
+            </div>
+            <div class="card-body">
+                <form asp-action="Editar" asp-controller="AdminCarrera" method="post">
+                    <input asp-for="IdCaAdmin" type="hidden" class="form-control" />
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input asp-for="Nombre" type="text" class="form-control" id="Nombre" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                        <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-secondary btn-sm">Volver a la lista</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-4 mb-3">
-            <button type="submit" class="btn btn-primary mb-3 btn-sm">Guardar</button> <br />
-            <a asp-action="Index" asp-controller="AdminCarrera" class="btn btn-warning btn-sm">Volver a la lista</a>
-        </div>
-    </form>
-</div>
+    </div>
+</body>
+</html>
